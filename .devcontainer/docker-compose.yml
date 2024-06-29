@@ -1,0 +1,28 @@
+version: "3.9"
+
+x-common_args: &common_args
+  USER_NAME: ${USER_NAME}
+  USER_PASSWORD: ${USER_PASSWORD}
+
+services:
+  dev_container:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        <<: *common_args
+    environment:
+      DISPLAY: ${DISPLAY:-:0}
+    privileged: true # to have an access to /dev
+    init: true
+    env_file:
+      - path: ./user.env
+        required: false
+    stdin_open: true
+    tty: true
+    entrypoint: [ "/bin/bash" ]
+    working_dir: ${WORKSPACE}
+    user: ${USER_NAME}
+    network_mode: host
+    volumes:
+      - ../:/repo
