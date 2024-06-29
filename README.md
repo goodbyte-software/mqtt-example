@@ -26,3 +26,9 @@ User credentials are stored in the file [brokers/users/passwd](./brokers/users/p
 1. Create passwd file `touch passwd_path`
 2. Add first user and password `mosquitto_passwd -b passwd_path John Doe`
 3. Add next user and password `mosquitto_passwd -b passwd_path Alex Pass123`
+
+
+## Example
+To run one of the broker and test its funcitonality please refer to selected doc file and follow the instruction:
+- [No TLS, Anonymous](./docs/No_tls_anonymous.md)
+- [No TLS, User password](./docs/No_tls_user_pass.md)
