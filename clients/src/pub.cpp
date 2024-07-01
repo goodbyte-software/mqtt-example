@@ -10,8 +10,6 @@ const std::string TOPIC { "hello" };
 
 const std::string KEY_STORE         { "brokers/certs/ClientJohn.key" };
 const std::string TRUST_STORE       { "brokers/certs/ca.crt" };
-const std::string CA_PATH           { "brokers/certs" };
-const std::string PRIVATE_KEY       { "brokers/certs/ClientJohn.crt" };
 
 const std::string PAYLOAD1 { "Hello World!" };
 
@@ -69,8 +67,6 @@ int main(int argc, char* argv[])
     auto sslopts = mqtt::ssl_options_builder()
                 .trust_store(TRUST_STORE)
                 .key_store(KEY_STORE)
-                .private_key(PRIVATE_KEY)
-                .ca_path(CA_PATH)
                 .ssl_version(3)
                 .error_handler([](const std::string& msg) {
                     std::cerr << "SSL Error: " << msg << std::endl;
