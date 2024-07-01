@@ -4,7 +4,7 @@
 
 #include <mqtt/client.h>
 
-const std::string SERVER_ADDRESS    { "mqtt://localhost:8883" };
+const std::string SERVER_ADDRESS    { "mqtts://localhost:8883" };
 const std::string CLIENT_ID         { "subsriber" };
 
 const std::string KEY_STORE         { "brokers/certs/ClientJohn.key" };

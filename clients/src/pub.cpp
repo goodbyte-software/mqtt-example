@@ -4,7 +4,7 @@
 
 #include <mqtt/client.h>
 
-const std::string SERVER_ADDRESS { "mqtt://localhost:8883" };
+const std::string SERVER_ADDRESS { "mqtts://localhost:8883" };
 const std::string CLIENT_ID { "sync_publish_cpp" };
 const std::string TOPIC { "hello" };
 
