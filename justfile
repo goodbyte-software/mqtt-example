@@ -21,4 +21,4 @@ subscribe:
 
 # Broker
 run_broker:
-    ./brokers/start_broker_no_tls_anonymous.sh
+    ./brokers/start_broker_tls_anonymous.sh
