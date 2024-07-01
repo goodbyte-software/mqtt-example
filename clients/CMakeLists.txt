@@ -14,12 +14,16 @@ set(PAHO_BUILD_STATIC TRUE CACHE BOOL "Build static library")
 
 add_subdirectory(lib/paho.mqtt.cpp)
 
-# Main target
-add_executable(client)
-
-target_sources(client
-PUBLIC 
-src/main.cpp
+# Publisher
+add_executable(pub
+    src/pub.cpp
 )
 
-target_link_libraries(client PUBLIC paho-mqttpp3-static)
+target_link_libraries(pub PUBLIC paho-mqttpp3-static)
+
+# Subsriber
+add_executable(sub
+    src/sub.cpp
+)
+
+target_link_libraries(sub PUBLIC paho-mqttpp3-static)
