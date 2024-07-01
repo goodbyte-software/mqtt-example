@@ -11,6 +11,7 @@ if(POLICY CMP0077)
 endif()
 set(PAHO_WITH_MQTT_C TRUE CACHE BOOL "Build C library")
 set(PAHO_BUILD_STATIC TRUE CACHE BOOL "Build static library")
+set(PAHO_WITH_SSL TRUE CACHE BOOL "Build library with SSL support")
 
 add_subdirectory(lib/paho.mqtt.cpp)
 

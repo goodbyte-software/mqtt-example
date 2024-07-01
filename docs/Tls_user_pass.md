@@ -20,7 +20,7 @@ Please be aware that all of the certificates are self-signed (with password `123
 2. Open second terminal and subscribe to the broker for all topics that starts with `DEVICE_ID`
 
 ```
-mosquitto_sub -p 8883 -t "DEVICE_ID/#" -u John -P Doe -cafile /repo/brokers/certs/ca.crt --cert /repo/brokers/certs/ClientJohn.crt --key /repo/brokers/certs/ClientJohn.key --tls-version tlsv1.3
+mosquitto_sub -p 8883 -t "DEVICE_ID/#" -u John -P Doe --cafile /repo/brokers/certs/ca.crt --cert /repo/brokers/certs/ClientJohn.crt --key /repo/brokers/certs/ClientJohn.key --tls-version tlsv1.3
 ```
 where:
 - -p - port on which broker is listening

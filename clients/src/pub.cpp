@@ -1,11 +1,15 @@
 #include <chrono>
 #include <iostream>
+#include <fstream>
 
 #include <mqtt/client.h>
 
-const std::string SERVER_ADDRESS { "mqtt://localhost:1883" };
+const std::string SERVER_ADDRESS { "mqtts://localhost:8883" };
 const std::string CLIENT_ID { "sync_publish_cpp" };
 const std::string TOPIC { "hello" };
+
+const std::string KEY_STORE         { "brokers/certs/ClientAlex_keystore.pem" };
+const std::string TRUST_STORE       { "brokers/certs/ca.crt" };
 
 const std::string PAYLOAD1 { "Hello World!" };
 
@@ -34,6 +38,23 @@ public:
 
 // --------------------------------------------------------------------------
 
+bool keys_available()
+{
+    std::ifstream tstore(TRUST_STORE);
+    if (!tstore) {
+        std::cerr << "The trust store file does not exist: " << TRUST_STORE << std::endl;
+        return false;
+    }
+
+    std::ifstream kstore(KEY_STORE);
+    if (!kstore) {
+        std::cerr << "The key store file does not exist: " << KEY_STORE << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
 int main(int argc, char* argv[])
 {
     mqtt::client cli(SERVER_ADDRESS, CLIENT_ID, nullptr);
@@ -41,9 +62,21 @@ int main(int argc, char* argv[])
     user_callback cb;
     cli.set_callback(cb);
 
+    if(not keys_available()) return 1;
+
+    auto sslopts = mqtt::ssl_options_builder()
+                .trust_store(TRUST_STORE)
+                .key_store(KEY_STORE)
+                .ssl_version(3)
+                .error_handler([](const std::string& msg) {
+                    std::cerr << "SSL Error: " << msg << std::endl;
+                })
+                .finalize();
+
     auto connOpts = mqtt::connect_options_builder()
         .keep_alive_interval(std::chrono::seconds(20))
         .clean_session()
+        .ssl(sslopts)
         .finalize();
 
     try {

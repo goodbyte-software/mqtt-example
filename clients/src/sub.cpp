@@ -7,14 +7,26 @@
 const std::string SERVER_ADDRESS    { "mqtts://localhost:8883" };
 const std::string CLIENT_ID         { "subscriber" };
 
+const std::string KEY_STORE         { "brokers/certs/ClientJohn_keystore.pem" };
+const std::string TRUST_STORE       { "brokers/certs/ca.crt" };
+
 int main(int argc, char* argv[])
 {
     mqtt::client cli(SERVER_ADDRESS, CLIENT_ID);
+
+    auto sslopts = mqtt::ssl_options_builder()
+                   .trust_store(TRUST_STORE)
+                   .key_store(KEY_STORE)
+                   .error_handler([](const std::string& msg) {
+                       std::cerr << "SSL Error: " << msg << std::endl;
+                   })
+                   .finalize();
 
     auto connOpts = mqtt::connect_options_builder()
         .keep_alive_interval(std::chrono::seconds(30))
         .automatic_reconnect(std::chrono::seconds(2), std::chrono::seconds(30))
         .clean_session(false)
+        .ssl(sslopts)
         .finalize();
 
     const std::vector<std::string> TOPICS { "hello", "command" };
