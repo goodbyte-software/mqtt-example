@@ -8,7 +8,7 @@ const std::string SERVER_ADDRESS { "mqtts://localhost:8883" };
 const std::string CLIENT_ID { "sync_publish_cpp" };
 const std::string TOPIC { "hello" };
 
-const std::string KEY_STORE         { "brokers/certs/ClientJohn.key" };
+const std::string KEY_STORE         { "brokers/certs/ClientAlex_keystore.pem" };
 const std::string TRUST_STORE       { "brokers/certs/ca.crt" };
 
 const std::string PAYLOAD1 { "Hello World!" };
