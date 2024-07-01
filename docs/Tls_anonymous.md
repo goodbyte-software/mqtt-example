@@ -33,7 +33,7 @@ where:
 3. Open third terminal and publish messages to broker on selected topics that starts with `DEVICE_ID`
 
 ```
-mosquitto_pub -p 8883 -t "DEVICE_ID/DEBUG_MSG" -m "This is first debug message" -cafile /repo/brokers/certs/ca.crt --cert /repo/brokers/certs/ClientAlex.crt --key /repo/brokers/certs/ClientAlex.key --tls-version tlsv1.3
+mosquitto_pub -p 8883 -t "DEVICE_ID/DEBUG_MSG" -m "This is first debug message" --cafile /repo/brokers/certs/ca.crt --cert /repo/brokers/certs/ClientAlex.crt --key /repo/brokers/certs/ClientAlex.key --tls-version tlsv1.3
 ```
 
 where:
