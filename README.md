@@ -1,6 +1,5 @@
 # MQTT example
 
-
 ## MQTT brokers
 The demo is able to start 4 types of mqtt brokers:
 - No TLS, Anonymous users allowed on port 1883
@@ -27,6 +26,8 @@ User credentials are stored in the file [brokers/users/passwd](./brokers/users/p
 2. Add first user and password `mosquitto_passwd -b passwd_path John Doe`
 3. Add next user and password `mosquitto_passwd -b passwd_path Alex Pass123`
 
+## MQTT clients
+Attention: After clone run `git submodule update --init --recursive`.
 
 ## Example
 To run one of the broker and test its funcitonality please refer to selected doc file and follow the instruction:
