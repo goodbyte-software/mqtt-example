@@ -10,7 +10,6 @@ const std::string TOPIC { "hello" };
 const std::string PAYLOAD1 { "Hello World!" };
 
 const char* PAYLOAD2 = "Hi there!";
-const char* PAYLOAD3 = "Is anyone listening?";
 
 const int QOS = 1;
 
