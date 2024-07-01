@@ -29,9 +29,26 @@ User credentials are stored in the file [brokers/users/passwd](./brokers/users/p
 ## MQTT clients
 Attention: After clone run `git submodule update --init --recursive`.
 
+There are two client executables in the repository.
+One that subscribes to two topics:
+- `hello`
+- and `command`.
+
+And one that publishes to the `hello` topic two messages at each run. To build them run `just build`.
+
 ## Example
-To run one of the broker and test its funcitonality please refer to selected doc file and follow the instruction:
+To run one of the broker and test its functionality please refer to selected doc file and follow the instruction:
 - [No TLS, Anonymous](./docs/No_tls_anonymous.md)
 - [No TLS, User password](./docs/No_tls_user_pass.md)
 - [TLS, Anonymous](./docs/Tls_anonymous.md)
 - [TLS, User password](./docs/Tls_user_pass.md)
+
+To fully run the example run a broker
+
+```
+just run_broker
+```
+
+Then, run subscriber with `just subscribe` command.
+
+And by running `just publish`, you should see messages coming in the subscriber's terminal.
